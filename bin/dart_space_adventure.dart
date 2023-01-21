@@ -5,7 +5,9 @@ void main(List<String> arguments) {
   printGreeting();
   printIntroduction(responseToPrompt("What is your name?"));
   print('Let\'s go on an adventure!');
-  travel();
+  travel(promptForRandomOrSpecificDestination(
+    'Shall I randomly choose a planet for you to visit? (Y or N)'
+  ));
 }
 
 String responseToPrompt(String prompt) {
@@ -22,24 +24,39 @@ void printIntroduction(String name) {
   print('Nice to meet you, $name. My name is Eliza, I\'m an old friend of Siri.');
 }
 
-void travel() {
+bool promptForRandomOrSpecificDestination(String prompt) {
   String? answer;
   while (answer != 'Y' && answer != 'N') {
-    answer = responseToPrompt('Shall I randomly choose a planet for you to visit? (Y or N)');
+    answer = responseToPrompt(prompt);
     if (answer == 'Y') {
-      print(
-        'Traveling to Mercury...\n'
-        'Arrived at Mercury. A very cold planet, furthest from the sun.'
-      );
+      return true;
     } else if (answer == 'N') {
-      print('Name the planet you would like to visit.');
-      final planetName = stdin.readLineSync() ?? '';
-      print(
-        'Traveling to $planetName...\n'
-        'Arrived at $planetName. A very cold planet, furthest from the sun.'
-      );
+      return false;
     } else {
       print('Sorry, I didn\'t get that.');
     }
   }
+  return false;
+}
+
+void travel(bool randomDestination) {
+  if (randomDestination) {
+    travelToRandomPlanet();
+  } else {
+    travelTo(responseToPrompt('Name the planet you would like to visit.'));
+  }
+}
+
+void travelToRandomPlanet() {
+  print(
+    'Traveling to Mercury...\n'
+    'Arrived at Mercury. A very cold planet, furthest from the sun.'
+  );
+}
+
+void travelTo(String planetName) {
+  print(
+    'Traveling to $planetName...\n'
+    'Arrived at $planetName. A very cold planet, furthest from the sun.'
+  );
 }
