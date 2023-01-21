@@ -2,12 +2,9 @@
 import 'dart:io';
 
 void main(List<String> arguments) {
-  print('Welcome to the Solar System!');
-  print('There are 8 planets to explore.');
-  
-  print('What is your name?');
+  printGreeting();
 
-  final name = stdin.readLineSync() ?? '';
+  final name = getName();
 
   print('Nice to meet you, $name. My name is Eliza, I\'m an old friend of Siri.');
 
@@ -36,4 +33,14 @@ void main(List<String> arguments) {
       print('Sorry, I didn\'t get that.');
     }
   }
+}
+
+void printGreeting() {
+  print('Welcome to the Solar System!');
+  print('There are 8 planets to explore.');
+}
+
+String getName() {
+  print('What is your name?');
+  return stdin.readLineSync() ?? '';
 }
