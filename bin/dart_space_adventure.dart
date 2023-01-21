@@ -16,19 +16,24 @@ void main(List<String> arguments) {
     'Shall I randomly choose a planet for you to visit? (Y or N)'
   );
   
-  final answer = stdin.readLineSync() ?? '';
+  String? answer;
   
-  if (answer == 'Y') {
-    print(
-      'Traveling to Mercury...\n'
-      'Arrived at Mercury. A very cold planet, furthest from the sun.'
-    );
-  } else {
-    print('Name the planet you would like to visit.');
-    final planetName = stdin.readLineSync() ?? '';
-    print(
-      'Traveling to $planetName...\n'
-      'Arrived at $planetName. A very cold planet, furthest from the sun.'
-    );
+  while (answer != 'Y' && answer != 'N') {
+    answer = stdin.readLineSync() ?? '';
+    if (answer == 'Y') {
+      print(
+        'Traveling to Mercury...\n'
+        'Arrived at Mercury. A very cold planet, furthest from the sun.'
+      );
+    } else if (answer == 'N') {
+      print('Name the planet you would like to visit.');
+      final planetName = stdin.readLineSync() ?? '';
+      print(
+        'Traveling to $planetName...\n'
+        'Arrived at $planetName. A very cold planet, furthest from the sun.'
+      );
+    } else {
+      print('Sorry, I didn\'t get that.');
+    }
   }
 }
