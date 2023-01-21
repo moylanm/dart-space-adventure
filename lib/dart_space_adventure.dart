@@ -1,63 +1,66 @@
 import 'dart:io';
 
-void startSpaceAdventure() {
-  printGreeting();
-  printIntroduction(responseToPrompt("What is your name?"));
-  print('Let\'s go on an adventure!');
-  travel(
-    promptForRandomOrSpecificDestination(
-      'Shall I randomly choose a planet for you to visit? (Y or N)'
-    )
-  );
-}
+class SpaceAdventure {
 
-String responseToPrompt(String prompt) {
-  print(prompt);
-  return stdin.readLineSync() ?? '';
-}
+  void start() {
+    printGreeting();
+    printIntroduction(responseToPrompt("What is your name?"));
+    print('Let\'s go on an adventure!');
+    travel(
+      promptForRandomOrSpecificDestination(
+        'Shall I randomly choose a planet for you to visit? (Y or N)'
+      )
+    );
+  }
 
-void printGreeting() {
-  print('Welcome to the Solar System!');
-  print('There are 8 planets to explore.');
-}
+  String responseToPrompt(String prompt) {
+    print(prompt);
+    return stdin.readLineSync() ?? '';
+  }
 
-void printIntroduction(String name) {
-  print('Nice to meet you, $name. My name is Eliza, I\'m an old friend of Siri.');
-}
+  void printGreeting() {
+    print('Welcome to the Solar System!');
+    print('There are 8 planets to explore.');
+  }
 
-bool promptForRandomOrSpecificDestination(String prompt) {
-  String? answer;
-  while (answer != 'Y' && answer != 'N') {
-    answer = responseToPrompt(prompt);
-    if (answer == 'Y') {
-      return true;
-    } else if (answer == 'N') {
-      return false;
+  void printIntroduction(String name) {
+    print('Nice to meet you, $name. My name is Eliza, I\'m an old friend of Siri.');
+  }
+
+  bool promptForRandomOrSpecificDestination(String prompt) {
+    String? answer;
+    while (answer != 'Y' && answer != 'N') {
+      answer = responseToPrompt(prompt);
+      if (answer == 'Y') {
+        return true;
+      } else if (answer == 'N') {
+        return false;
+      } else {
+        print('Sorry, I didn\'t get that.');
+      }
+    }
+    return false;
+  }
+
+  void travel(bool randomDestination) {
+    if (randomDestination) {
+      travelToRandomPlanet();
     } else {
-      print('Sorry, I didn\'t get that.');
+      travelTo(responseToPrompt('Name the planet you would like to visit.'));
     }
   }
-  return false;
-}
 
-void travel(bool randomDestination) {
-  if (randomDestination) {
-    travelToRandomPlanet();
-  } else {
-    travelTo(responseToPrompt('Name the planet you would like to visit.'));
+  void travelToRandomPlanet() {
+    print(
+      'Traveling to Mercury...\n'
+      'Arrived at Mercury. A very cold planet, furthest from the sun.'
+    );
   }
-}
 
-void travelToRandomPlanet() {
-  print(
-    'Traveling to Mercury...\n'
-    'Arrived at Mercury. A very cold planet, furthest from the sun.'
-  );
-}
-
-void travelTo(String planetName) {
-  print(
-    'Traveling to $planetName...\n'
-    'Arrived at $planetName. A very cold planet, furthest from the sun.'
-  );
+  void travelTo(String planetName) {
+    print(
+      'Traveling to $planetName...\n'
+      'Arrived at $planetName. A very cold planet, furthest from the sun.'
+    );
+  }
 }
