@@ -3,10 +3,7 @@ import 'dart:io';
 
 void main(List<String> arguments) {
   printGreeting();
-
-  final name = getName();
-
-  print('Nice to meet you, $name. My name is Eliza, I\'m an old friend of Siri.');
+  printIntroduction(getName());
 
   print(
     'Let\'s go on an adventure!\n'
@@ -43,4 +40,8 @@ void printGreeting() {
 String getName() {
   print('What is your name?');
   return stdin.readLineSync() ?? '';
+}
+
+void printIntroduction(String name) {
+  print('Nice to meet you, $name. My name is Eliza, I\'m an old friend of Siri.');
 }
