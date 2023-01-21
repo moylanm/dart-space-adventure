@@ -7,7 +7,7 @@ void main(List<String> arguments) {
   
   print('What is your name?');
 
-  String name = stdin.readLineSync() ?? '';
+  final name = stdin.readLineSync() ?? '';
 
   print('Nice to meet you, $name. My name is Eliza, I\'m an old friend of Siri.');
 
@@ -16,11 +16,11 @@ void main(List<String> arguments) {
     'Shall I randomly choose a planet for you to visit? (Y or N)'
   );
   
-  String answer = stdin.readLineSync() ?? '';
+  final answer = stdin.readLineSync() ?? '';
   
   print('Name the planet you would like to visit.');
   
-  String planetName = stdin.readLineSync() ?? '';
+  final planetName = stdin.readLineSync() ?? '';
 
   print(
     'Traveling to $planetName...\n'
