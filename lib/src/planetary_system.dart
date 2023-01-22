@@ -1,5 +1,5 @@
-class PlantarySystem {
+class PlanetarySystem {
   String name;
 
-  PlantarySystem({this.name = 'Unnamed System'});
+  PlanetarySystem({this.name = 'Unnamed System'});
 }
