@@ -57,9 +57,16 @@ class SpaceAdventure {
     if (randomDestination) {
       planet = planetarySystem.randomPlanet();
     } else {
-      planet = planetarySystem.planetWithName(
-        responseToPrompt('Name the planet you would like to visit.')
-      );
+      String answer = '';
+      while (true) {
+        answer = responseToPrompt('Name the planet you would like to visit.');
+        if (planetarySystem.hasPlanet(answer)) {
+          planet = planetarySystem.planetWithName(answer);
+          break;
+        } else {
+          print('$answer does not exist in this system.');
+        }
+      }
     }
     travelTo(planet);
   }

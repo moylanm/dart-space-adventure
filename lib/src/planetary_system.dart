@@ -30,4 +30,13 @@ class PlanetarySystem {
       orElse: () => Planet.nullPlanet()
     );
   }
+
+  bool hasPlanet(String planetname) {
+    try {
+      planets.firstWhere((planet) => planet.name == planetname);
+    } on StateError {
+      return false;
+    }
+    return true;
+  }
 }
