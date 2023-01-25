@@ -62,10 +62,12 @@ class SpaceAdventure {
     );
   }
 
-  void travelTo(String planetName) {
-    print(
-      'Traveling to $planetName...\n'
-      'Arrived at $planetName. A very cold planet, furthest from the sun.'
-    );
+  void travelTo(String destination) {
+    print('Traveling to $destination...');
+    planetarySystem.planets.forEach((planet) {
+      if (planet.name == destination) {
+        print('Arrived at ${planet.name}, ${planet.description}');
+      }
+    });
   }
 }
