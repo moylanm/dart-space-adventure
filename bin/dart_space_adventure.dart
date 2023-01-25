@@ -1,29 +1,23 @@
+import 'dart:convert';
+import 'dart:io';
+
 import 'package:dart_space_adventure/dart_space_adventure.dart';
 
-const systemName = 'Solar System';
-const planetData = {
-  'Mercury': 'A very hot planet, closest to the sun.',
-  'Venus': 'It\'s very cloudy here!',
-  'Earth': 'There is something very familiar about this planet.',
-  'Mars': 'Known as the red planet.',
-  'Jupiter': 'A gas giant, with a noticeable red spot.',
-  'Saturn': 'This planet has beautiful rings around it.',
-  'Uranus': 'Strangely, this planet rotates around on its side.',
-  'Neptune': 'A very cold planet, furthest from the sun.',
-  'Pluto': 'I don\'t care what they say - it\'s a planet.'
-};
+void main(List<String> arguments) async {
 
-void main(List<String> arguments) {
+  if (!arguments[0].endsWith('.json')) {
+    print('\nERROR: First argument must be a .json file.');
+    return;
+  }
+
+  if (!await File(arguments[0]).exists()) {
+    print('\nERROR: File "${arguments[0]}" does not exist.');
+    return;
+  }
+
+  final decoded = jsonDecode(File(arguments[0]).readAsStringSync());
+
   SpaceAdventure(
-    planetarySystem: PlanetarySystem(
-      name: systemName,
-      planets: mockPlanets()
-    )
+    planetarySystem: PlanetarySystem.fromJson(decoded)
   ).start();
-}
-
-List<Planet> mockPlanets() {
-  return planetData.entries.map(
-    (e) => Planet(name: e.key, description: e.value)
-  ).toList();
 }

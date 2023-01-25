@@ -10,6 +10,12 @@ class PlanetarySystem {
 
   PlanetarySystem({this.name = 'Unnamed System', this.planets = const[]});
 
+  PlanetarySystem.fromJson(Map<String, dynamic> json)
+    : name = json['name'],
+      planets = json['planets'].map<Planet>(
+        (e) => Planet(name: e['name'], description: e['description'])
+      ).toList();
+
   int get numberOfPlanets => planets.length;
   bool get hasPlanets => planets.isNotEmpty;
   
