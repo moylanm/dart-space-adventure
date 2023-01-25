@@ -1,8 +1,8 @@
 import 'planet.dart';
 
 class PlanetarySystem {
-  String name;
-  List<Planet> planets;
+  final String name;
+  final List<Planet> planets;
 
   PlanetarySystem({this.name = 'Unnamed System', this.planets = const[]});
 
