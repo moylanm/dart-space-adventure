@@ -3,7 +3,7 @@ import 'planetary_system.dart';
 
 class SpaceAdventure {
 
-  PlanetarySystem planetarySystem;
+  final PlanetarySystem planetarySystem;
 
   SpaceAdventure({required this.planetarySystem});
 
