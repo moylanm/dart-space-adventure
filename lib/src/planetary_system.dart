@@ -17,4 +17,11 @@ class PlanetarySystem {
     if (!hasPlanets) return Planet.nullPlanet();
     return planets[_random.nextInt(planets.length)];
   }
+
+  Planet planetWithName(String name) {
+    return planets.firstWhere(
+      (planet) => planet.name == name,
+      orElse: () => Planet.nullPlanet()
+    );
+  }
 }

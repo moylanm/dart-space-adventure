@@ -54,24 +54,19 @@ class SpaceAdventure {
   }
 
   void travel(bool randomDestination) {
+    Planet planet;
     if (randomDestination) {
-      travelToPlanet(planetarySystem.randomPlanet());
+      planet = planetarySystem.randomPlanet();
     } else {
-      travelTo(responseToPrompt('Name the planet you would like to visit.'));
+      planet = planetarySystem.planetWithName(
+        responseToPrompt('Name the planet you would like to visit.')
+      );
     }
+    travelTo(planet);
   }
 
-  void travelToPlanet(Planet planet) {
+  void travelTo(Planet planet) {
     print('Traveling to ${planet.name}');
-    print('Arrived at ${planet.name}, ${planet.description}');
-  }
-
-  void travelTo(String destination) {
-    print('Traveling to $destination...');
-    planetarySystem.planets.forEach((planet) {
-      if (planet.name == destination) {
-        print('Arrived at ${planet.name}, ${planet.description}');
-      }
-    });
+    print('Arrived at ${planet.name}. ${planet.description}');
   }
 }
