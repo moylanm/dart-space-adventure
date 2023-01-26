@@ -57,7 +57,7 @@ class SpaceAdventure {
     if (randomDestination) {
       planet = planetarySystem.randomPlanet();
     } else {
-      String answer = '';
+      String? answer;
       while (true) {
         answer = responseToPrompt('Name the planet you would like to visit.');
         if (planetarySystem.hasPlanet(answer)) {
@@ -72,7 +72,7 @@ class SpaceAdventure {
   }
 
   void travelTo(Planet planet) {
-    print('Traveling to ${planet.name}');
+    print('Traveling to ${planet.name}.');
     print('Arrived at ${planet.name}. ${planet.description}');
   }
 }
